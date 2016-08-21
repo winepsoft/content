@@ -128,8 +128,8 @@
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="مریم"
-            android:id="@+id/rbMaryam"
+            android:text="میترا"
+            android:id="@+id/rbMitra"
             android:button="@null"
             android:drawableRight="@android:drawable/btn_radio"
             android:layout_weight="1" />
