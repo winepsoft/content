@@ -108,6 +108,10 @@
     <string name="mark">mark</string>
     <string name="index">index</string>
     <string name="home">home</string>
+    <string name="settings">settings</string>
     <string name="title_activity_help">help</string>
     <string name="background_image_app_bar_layout">background_image_app_bar_layout</string>
+    <string name="choice_color">انتخاب رنگ</string>
+    <string name="choice_text_size">انتخاب اندازه متن</string>
+    <string name="choice_text_font">انتخاب فونت متن</string>
 </resources>
