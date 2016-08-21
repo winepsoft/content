@@ -19,4 +19,7 @@ public class StaticParameters {
     public Context ContentDetailsContext;
     public Context ContentActivity;
     public int ActivityMainGridViewColumnNumber=3;
+    public int ThemCode=100;
+    public int TextSize=10;
+    public int TextFont=1;
 }
