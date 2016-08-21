@@ -22,4 +22,7 @@ public class StaticParameters {
     public int DefualtThemCode=100;
     public int DefualtTextSizeCode=20;
     public int DefualtTextFontCode=1;
+    public int ThemCode;
+    public int TextSize;
+    public int TextFont;
 }
