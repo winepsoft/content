@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">اپلیکیشن محتوی محور</string>
+    <string name="app_name">ContentCentricApp</string>
     <string name="iconOfItem">iconOfItem</string>
     <string name="title">title</string>
     <string name="contentDetailImage">contentDetailImage</string>
