@@ -14,7 +14,65 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="FirstTheme"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary1</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark1</item>
+        <item name="colorAccent">@color/colorAccent1</item>
+    </style>
+
+    <style name="SecondTheme"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary2</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@color/colorAccent2</item>
+    </style>
+
+    <style name="ThirdTheme"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary3</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark3</item>
+        <item name="colorAccent">@color/colorAccent3</item>
+    </style>
+
+    <style name="FirstTheme.SmallTextSize" parent="FirstTheme">
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="FirstTheme.MeduimTextSize" parent="FirstTheme">
+        <item name="android:textSize">@dimen/meduim_text_size</item>
+    </style>
+
+    <style name="FirstTheme.LargeTextSize" parent="FirstTheme">
+        <item name="android:textSize">@dimen/large_text_size</item>
+    </style>
+
+    <style name="SecondTheme.SmallTextSize" parent="SecondTheme">
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="SecondTheme.MeduimTextSize" parent="SecondTheme">
+        <item name="android:textSize">@dimen/meduim_text_size</item>
+    </style>
+
+    <style name="SecondTheme.LargeTextSize" parent="SecondTheme">
+        <item name="android:textSize">@dimen/large_text_size</item>
+    </style>
+
+    <style name="ThirdTheme.SmallTextSize" parent="ThirdTheme">
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="ThirdTheme.MeduimTextSize" parent="ThirdTheme">
+        <item name="android:textSize">@dimen/meduim_text_size</item>
+    </style>
+
+    <style name="ThirdTheme.LargeTextSize" parent="ThirdTheme">
+        <item name="android:textSize">@dimen/large_text_size</item>
+    </style>
+
+    <style name="FirstTheme.NastaliqFont" parent="FirstTheme">
+        <item name="android:fontFamily">fonts/IranNastaliq</item>
+    </style>
 
 </resources>

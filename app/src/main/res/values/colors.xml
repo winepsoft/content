@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#00838F</color>
     <color name="colorPrimaryDark">#006064</color>
     <color name="colorAccent">#FF5722</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
-    <color name="primary_light">#E0F7FA</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#BDBDBD</color>
-    <color name="action_bar_textColor">#FFFFFF</color>
+
+    <color name="colorPrimary1">#3F51B5</color>
+    <color name="colorPrimaryDark1">#303F9F</color>
+    <color name="colorAccent1">#FF4081</color>
+
+    <color name="colorPrimary2">#00838F</color>
+    <color name="colorPrimaryDark2">#006064</color>
+    <color name="colorAccent2">#FF5722</color>
+
+    <color name="colorPrimary3">#673AB7</color>
+    <color name="colorPrimaryDark3">#512DA8</color>
+    <color name="colorAccent3">#CDDC39</color>
 </resources>
 
