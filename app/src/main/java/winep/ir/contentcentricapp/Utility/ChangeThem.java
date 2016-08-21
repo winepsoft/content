@@ -11,12 +11,12 @@ import winep.ir.contentcentricapp.R;
 public class ChangeThem {
 
     private static int sTheme;
-    public final static int THEME_DEFAULT = 100;
-    public final static int THEME_DEFAULT_Small_Size=110;
-    public final static int THEME_DEFAULT_Meduim_Size=120;
-    public final static int THEME_DEFAULT_large_Size=130;
-     public final static int THEME_WHITE = 2;
-    public final static int THEME_BLUE = 3;
+    public final static int THEME_Green = 100;
+    public final static int THEME_Green_Small_Size =110;
+    public final static int THEME_Green_Meduim_Size =120;
+    public final static int THEME_Green_large_Size =130;
+    public final static int THEME_BLUE = 2;
+    public final static int THEME_VIOLET = 3;
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
      */
@@ -32,19 +32,19 @@ public class ChangeThem {
         switch (sTheme)
         {
             default:
-            case THEME_DEFAULT:
+            case THEME_Green:
                 activity.setTheme(R.style.FirstTheme);
                 break;
-            case THEME_WHITE:
+            case THEME_BLUE:
                 activity.setTheme(R.style.SecondTheme);
                 break;
-            case THEME_BLUE:
+            case THEME_VIOLET:
                 activity.setTheme(R.style.ThirdTheme);
                 break;
-            case THEME_DEFAULT_Meduim_Size:
+            case THEME_Green_Meduim_Size:
                 activity.setTheme(R.style.FirstTheme_MeduimTextSize);
                 break;
-            case THEME_DEFAULT_large_Size:
+            case THEME_Green_large_Size:
                 activity.setTheme(R.style.FirstTheme_LargeTextSize);
                 break;
         }
