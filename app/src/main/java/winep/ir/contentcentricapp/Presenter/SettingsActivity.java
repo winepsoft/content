@@ -3,9 +3,11 @@ package winep.ir.contentcentricapp.Presenter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
 import winep.ir.contentcentricapp.R;
+import winep.ir.contentcentricapp.Utility.ChangeFont;
 import winep.ir.contentcentricapp.Utility.ChangeThem;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -15,6 +17,7 @@ public class SettingsActivity extends AppCompatActivity {
     private RadioGroup rgThemColor;
     private RadioGroup rgTextsize;
     private RadioGroup rgTextFont;
+    private ViewGroup viewGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +44,39 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+
+        rgTextsize.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                switch (checkedId){
+                    case R.id.rbSmallSize:
+                        break;
+                    case R.id.rbMeduimSize:
+                        break;
+                    case R.id.rbLargeSize:
+                        break;
+                }
+
+            }
+        });
+
+        rgTextFont.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                switch (checkedId){
+                    case R.id.rbNazaninFont:
+                        ChangeFont.getInstance().overrideFonts(getBaseContext(),viewGroup,"BNazanin");
+                        break;
+                    case R.id.rbMitra:
+                        ChangeFont.getInstance().overrideFonts(getBaseContext(),viewGroup,"BMitra");
+                        break;
+                }
+            }
+        });
     }
 
     private void initializeItemsInView(){
+        viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         rgThemColor=(RadioGroup)findViewById(R.id.rgColor);
         rgTextsize=(RadioGroup)findViewById(R.id.rgTextSize);
         rgTextFont=(RadioGroup)findViewById(R.id.rgtextFont);
