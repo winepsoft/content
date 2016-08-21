@@ -1,45 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="4"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    card_view:cardUseCompatPadding="true"
+    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="3dp"
+    android:translationZ="5dp">
 
-    <ImageButton
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/like"
-        android:id="@+id/like"
-        android:background="@null"
-        android:layout_weight="1"
-        android:contentDescription="@string/like" />
+        android:weightSum="4">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/mark"
-        android:id="@+id/mark"
-        android:background="@null"
-        android:layout_weight="1"
-        android:contentDescription="@string/mark" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/like"
+            android:id="@+id/like"
+            android:background="@null"
+            android:layout_weight="1"
+            android:contentDescription="@string/like"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/index"
-        android:id="@+id/index"
-        android:background="@null"
-        android:layout_weight="1"
-        android:contentDescription="@string/index" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/mark"
+            android:id="@+id/mark"
+            android:background="@null"
+            android:layout_weight="1"
+            android:contentDescription="@string/mark"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/home"
-        android:id="@+id/home"
-        android:background="@null"
-        android:layout_weight="1"
-        android:contentDescription="@string/home" />
-</LinearLayout>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/index"
+            android:id="@+id/index"
+            android:background="@null"
+            android:layout_weight="1"
+            android:contentDescription="@string/index"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home"
+            android:id="@+id/home"
+            android:background="@null"
+            android:layout_weight="1"
+            android:contentDescription="@string/home"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
