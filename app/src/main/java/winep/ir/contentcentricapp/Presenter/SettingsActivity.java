@@ -50,10 +50,13 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId){
                     case R.id.rbSmallSize:
+                        ChangeThem.changeToTheme(thisActivity, ChangeThem.THEME_Green_Small_Size);
                         break;
                     case R.id.rbMeduimSize:
+                        ChangeThem.changeToTheme(thisActivity, ChangeThem.THEME_Green_Meduim_Size);
                         break;
                     case R.id.rbLargeSize:
+                        ChangeThem.changeToTheme(thisActivity, ChangeThem.THEME_Green_large_Size);
                         break;
                 }
 
