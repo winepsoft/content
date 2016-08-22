@@ -24,9 +24,15 @@ public class ChangeThem {
     public final static int THEME_VIOLET_Meduim_Size =320;
     public final static int THEME_VIOLET_large_Size =330;
 
+    public static void setsTheme(int sTheme) {
+        ChangeThem.sTheme = sTheme;
+    }
+
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
      */
+
+
     public static void changeToTheme(Activity activity, int theme) {
         sTheme = theme;
         activity.finish();

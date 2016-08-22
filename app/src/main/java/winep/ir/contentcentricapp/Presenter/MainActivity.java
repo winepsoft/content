@@ -32,11 +32,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        staticParameters=StaticParameters.getInstance();
-        staticParameters.ActivityMainContext=this;
-        settingsManager=new SettingsManager(this);
-        setSettingParameter();
-        ChangeThem.onActivityCreateSetTheme(this);
+        initializeParameters();//this method should call before setThemFromSettingsParameters()
+        setThemFromSettingsParameters(); //this method should call before setContentView()
         setContentView(R.layout.activity_main);
         initializeItemsInView();
         createGridViewWithRecyclerView(StaticParameters.getInstance().ActivityMainGridViewColumnNumber);
@@ -61,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
     public void openContentDetailsActivity(){
         Intent intent=new Intent(StaticParameters.getInstance().ActivityMainContext,ContentDetailsActivity.class);
         startActivity(intent);
+    }
+
+    public void initializeParameters(){
+        staticParameters=StaticParameters.getInstance();
+        staticParameters.ActivityMainContext=this;
+        settingsManager=new SettingsManager(this);
+        setSettingParameter();
+    }
+
+    public void setThemFromSettingsParameters(){
+        ChangeThem.setsTheme(staticParameters.ThemCode+staticParameters.TextSize);
+        ChangeThem.onActivityCreateSetTheme(this);
     }
 
     public void initializeItemsInView(){
