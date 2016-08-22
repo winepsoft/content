@@ -3,10 +3,7 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardUseCompatPadding="true"
-    card_view:cardElevation="4dp"
-    card_view:cardCornerRadius="3dp"
-    android:translationZ="5dp">
+    card_view:cardUseCompatPadding="true">
 
     <View
         android:layout_width="match_parent"
