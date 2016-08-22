@@ -16,5 +16,7 @@
     <color name="colorPrimary3">#673AB7</color>
     <color name="colorPrimaryDark3">#512DA8</color>
     <color name="colorAccent3">#CDDC39</color>
+
+    <color name="colorTextActionBar">#FFFFFF</color>
 </resources>
 

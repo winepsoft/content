@@ -6,6 +6,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +36,8 @@ public class AudioPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ChangeThem.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_audio_player);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         initializeItemsInView();
         titleTextView.setText("Ashoobam - Chartar");
         songImageView.setImageResource(R.drawable.song_image);

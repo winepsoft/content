@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         initializeParameters();//this method should call before setThemFromSettingsParameters()
         setThemFromSettingsParameters(); //this method should call before setContentView()
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         initializeItemsInView();
         createGridViewWithRecyclerView(StaticParameters.getInstance().ActivityMainGridViewColumnNumber);
         setAdapterToMainMenuRecycler();

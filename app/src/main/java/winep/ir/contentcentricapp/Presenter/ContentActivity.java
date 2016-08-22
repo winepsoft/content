@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import winep.ir.contentcentricapp.DataModel.MainMenuItem;
 import winep.ir.contentcentricapp.R;
+import winep.ir.contentcentricapp.Utility.ChangeThem;
 import winep.ir.contentcentricapp.Utility.StaticParameters;
 
 public class ContentActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -43,6 +44,7 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ChangeThem.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_content);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
