@@ -27,8 +27,7 @@ public class ChangeThem {
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
      */
-    public static void changeToTheme(Activity activity, int theme)
-    {
+    public static void changeToTheme(Activity activity, int theme) {
         sTheme = theme;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));

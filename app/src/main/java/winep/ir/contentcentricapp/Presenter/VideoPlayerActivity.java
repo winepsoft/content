@@ -11,6 +11,7 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import winep.ir.contentcentricapp.R;
+import winep.ir.contentcentricapp.Utility.ChangeThem;
 
 /**
  * Created by ShaisteS on 8/15/2016.
@@ -23,6 +24,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ChangeThem.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_video_player);
         initializeItemsInView();
         playVideo();

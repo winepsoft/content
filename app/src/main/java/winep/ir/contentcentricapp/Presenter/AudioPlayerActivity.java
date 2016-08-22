@@ -18,6 +18,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import winep.ir.contentcentricapp.R;
+import winep.ir.contentcentricapp.Utility.ChangeThem;
 
 public class AudioPlayerActivity extends AppCompatActivity {
 
@@ -32,6 +33,7 @@ public class AudioPlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ChangeThem.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_audio_player);
         initializeItemsInView();
         titleTextView.setText("Ashoobam - Chartar");

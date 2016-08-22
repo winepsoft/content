@@ -14,20 +14,28 @@ import java.util.ArrayList;
 
 import winep.ir.contentcentricapp.DataModel.MainMenuItem;
 import winep.ir.contentcentricapp.R;
+import winep.ir.contentcentricapp.Utility.ChangeThem;
 import winep.ir.contentcentricapp.Utility.RecyclerItemClickListener;
+import winep.ir.contentcentricapp.Utility.SettingsManager;
 import winep.ir.contentcentricapp.Utility.StaticParameters;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mainRecyclerView;
     private MainActivityRecyclerAdapter adapter;
+    private SettingsManager settingsManager;
+    private StaticParameters staticParameters;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        staticParameters=StaticParameters.getInstance();
+        staticParameters.ActivityMainContext=this;
+        settingsManager=new SettingsManager(this);
+        setSettingParameter();
+        ChangeThem.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_main);
-        StaticParameters.getInstance().ActivityMainContext=this;
         initializeItemsInView();
         createGridViewWithRecyclerView(StaticParameters.getInstance().ActivityMainGridViewColumnNumber);
         setAdapterToMainMenuRecycler();
@@ -48,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void initializeItemsInView(){
         mainRecyclerView=(RecyclerView)findViewById(R.id.mainRecyclerView);
+    }
+
+    public void setSettingParameter(){
+        staticParameters.ThemCode=settingsManager.getThemCode();
+        staticParameters.TextSize=settingsManager.getTextSize();
+        staticParameters.TextFont=settingsManager.getTextFont();
+
     }
 
     public void createGridViewWithRecyclerView(int gridColumnNumber){
