@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverChangeSettings;
 import winep.ir.contentcentricapp.R;
 import winep.ir.contentcentricapp.Utility.ChangeFont;
 import winep.ir.contentcentricapp.Utility.ChangeThem;
+import winep.ir.contentcentricapp.Utility.SettingsManager;
 import winep.ir.contentcentricapp.Utility.StaticParameters;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -32,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ViewGroup viewGroup;
     private FloatingActionButton fabApplySettings;
     private StaticParameters staticParameters;
+    private SettingsManager settingsManager;
 
 
 
@@ -41,6 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
         ChangeThem.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_settings);
         staticParameters=StaticParameters.getInstance();
+        settingsManager=new SettingsManager(this);
         thisActivity=this;
         initializeItemsInView();
         setThemColorRadioButton();
@@ -62,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
                         staticParameters.ThemCode=300;
                         break;
                 }
-
+                applySettings(rgTextFont);
             }
         });
 
@@ -80,7 +84,7 @@ public class SettingsActivity extends AppCompatActivity {
                         staticParameters.TextSize=30;
                        break;
                 }
-
+                applySettings(rgTextFont);
             }
         });
 
@@ -95,22 +99,27 @@ public class SettingsActivity extends AppCompatActivity {
                         staticParameters.TextFont=2;
                         break;
                 }
+                applySettings(rgTextFont);
             }
         });
 
         fabApplySettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               applySettings();
+                settingsManager.setThemCode(staticParameters.ThemCode);
+                settingsManager.setTextSize(staticParameters.TextSize);
+                settingsManager.setTextFont(staticParameters.TextFont);
+                ObserverChangeSettings.setChangeSettingsStatus(true);
+                finish();
             }
         });
     }
 
-    private void applySettings(){
+    private void applySettings(View view){
         if (staticParameters.TextFont==1)
-            ChangeFont.getInstance().overrideFonts(getBaseContext(),viewGroup,"BNazanin");
+            ChangeFont.getInstance().overrideFonts(getBaseContext(),view,"BNazanin");
         else if(staticParameters.TextFont==2)
-            ChangeFont.getInstance().overrideFonts(getBaseContext(),viewGroup,"BMitra");
+            ChangeFont.getInstance().overrideFonts(getBaseContext(),view,"BMitra");
         ChangeThem.changeToTheme(thisActivity, staticParameters.ThemCode+staticParameters.TextSize);
     }
 

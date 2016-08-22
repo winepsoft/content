@@ -13,6 +13,8 @@ import android.view.View;
 import java.util.ArrayList;
 
 import winep.ir.contentcentricapp.DataModel.MainMenuItem;
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverChangeSettings;
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverChangeSettingsListener;
 import winep.ir.contentcentricapp.R;
 import winep.ir.contentcentricapp.Utility.ChangeThem;
 import winep.ir.contentcentricapp.Utility.RecyclerItemClickListener;
@@ -47,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
         );
+
+        ObserverChangeSettings.ObserverChangeSettingsListener(new ObserverChangeSettingsListener() {
+            @Override
+            public void changeSettings() {
+                recreate();
+            }
+        });
     }
 
     public void openContentDetailsActivity(){
