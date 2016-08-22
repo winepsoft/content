@@ -17,18 +17,6 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/like"
-            android:id="@+id/like"
-            android:background="@null"
-            android:layout_weight="1"
-            android:contentDescription="@string/like"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:src="@mipmap/mark"
             android:id="@+id/mark"
             android:background="@null"
@@ -40,14 +28,24 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/index"
-            android:id="@+id/index"
+            android:src="@mipmap/new_content"
+            android:id="@+id/newContent"
             android:background="@null"
             android:layout_weight="1"
-            android:contentDescription="@string/index"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            />
+            android:contentDescription="@string/new_content" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/info"
+            android:id="@+id/info"
+            android:background="@null"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/info" />
 
         <ImageButton
             android:layout_width="wrap_content"

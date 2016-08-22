@@ -114,4 +114,6 @@
     <string name="choice_color">انتخاب رنگ</string>
     <string name="choice_text_size">انتخاب اندازه متن</string>
     <string name="choice_text_font">انتخاب فونت متن</string>
+    <string name="new_content">new_content</string>
+    <string name="info">info</string>
 </resources>
