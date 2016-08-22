@@ -29,9 +29,9 @@ public class ContentDetailsActivity extends AppCompatActivity{
         protected void onCreate (Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             ChangeThem.onActivityCreateSetTheme(this);
+            setContentView(R.layout.activity_content_details);
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            setContentView(R.layout.activity_content_details);
             StaticParameters.getInstance().ContentDetailsContext = this;
             initializeItemsInView();
             createListViewInRecyclerView();
