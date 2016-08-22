@@ -8,6 +8,11 @@
     card_view:cardCornerRadius="3dp"
     android:translationZ="5dp">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
