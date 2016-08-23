@@ -28,7 +28,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import winep.ir.contentcentricapp.DataModel.Audio;
 import winep.ir.contentcentricapp.DataModel.MainMenuItem;
+import winep.ir.contentcentricapp.DataModel.Video;
 import winep.ir.contentcentricapp.R;
 import winep.ir.contentcentricapp.Utility.ChangeThem;
 import winep.ir.contentcentricapp.Utility.StaticParameters;
@@ -41,8 +43,10 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
     private ImageButton videoPlayer;
     private TextView mainContentText;
     private MapFragment mMapFragment;
-   private RecyclerView recyclerViewAudio;
+    private RecyclerView recyclerViewAudio;
     private RecyclerView recyclerViewVideo;
+    private ContentActivityRecyclerAudioAdapter audioAdapter;
+    private ContentActivityRecyclerVideoAdapter videoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +57,16 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         setSupportActionBar(toolbar);
         StaticParameters.getInstance().ContentActivity=this;
         initializeItemsInView();
-        visibleCardViewAudioAndVideo();
+        //visibleCardViewAudioAndVideo();
 
         Boolean imageStatus=getIntent().getExtras().getBoolean("imageStatus");
         setImageForBackgroundAppBarLayout(imageStatus);
+
+        audioAdapter=new ContentActivityRecyclerAudioAdapter(createAudioList());
+        recyclerViewAudio.setAdapter(audioAdapter);
+
+        videoAdapter=new ContentActivityRecyclerVideoAdapter(createVideoList());
+        recyclerViewVideo.setAdapter(videoAdapter);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -141,6 +151,26 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
             items.add(item);
         }
         return items;
+    }
+
+    public ArrayList<Audio> createAudioList(){
+        ArrayList<Audio> audios=new ArrayList<>();
+        for (int i=0;i<2;i++){
+            Audio audio=new Audio();
+            audio.setAudioTitle("audio"+i);
+            audios.add(audio);
+        }
+        return audios;
+    }
+
+    public ArrayList<Video> createVideoList(){
+        ArrayList<Video> videos=new ArrayList<>();
+        for (int i=0;i<3;i++){
+            Video video=new Video();
+            video.setVideoTitle("video"+i);
+            videos.add(video);
+        }
+        return videos;
     }
 
     @Override
