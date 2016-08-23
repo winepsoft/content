@@ -21,11 +21,11 @@
         android:layout_centerVertical="true"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:id="@+id/textView" />
+        android:id="@+id/videoTitle" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imgDownload"
+        android:id="@+id/videoDownload"
         android:contentDescription="@string/downloadIcon"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
@@ -35,10 +35,9 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imgPlay"
+        android:id="@+id/videoPlay"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:background="@null"
-        android:src="@mipmap/play"
-        android:contentDescription="@string/play"/>
+        android:src="@mipmap/play"/>
 </LinearLayout>

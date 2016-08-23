@@ -7,6 +7,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -40,6 +41,8 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
     private ImageButton videoPlayer;
     private TextView mainContentText;
     private MapFragment mMapFragment;
+   private RecyclerView recyclerViewAudio;
+    private RecyclerView recyclerViewVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         setSupportActionBar(toolbar);
         StaticParameters.getInstance().ContentActivity=this;
         initializeItemsInView();
+        visibleCardViewAudioAndVideo();
 
         Boolean imageStatus=getIntent().getExtras().getBoolean("imageStatus");
         setImageForBackgroundAppBarLayout(imageStatus);
@@ -61,19 +65,6 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-            }
-        });
-
-        audioPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAudioPlayer();
-            }
-        });
-        videoPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openVideoPlayer();
             }
         });
 
@@ -112,12 +103,16 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         });
     }
 
+    public void visibleCardViewAudioAndVideo(){
+        findViewById(R.id.layoutCardViewAudio).setVisibility(View.GONE);
+        findViewById(R.id.layoutCardViewVideo).setVisibility(View.GONE);
+    }
     public void initializeItemsInView(){
         topAppBarLayout=(AppBarLayout)findViewById(R.id.app_bar);
         backgroundImage=(ImageView)findViewById(R.id.backgroundImage);
-        audioPlayer=(ImageButton)findViewById(R.id.play_audio);
-        videoPlayer=(ImageButton)findViewById(R.id.play_video);
         mainContentText =(TextView)findViewById(R.id.mainContent);
+        recyclerViewAudio=(RecyclerView)findViewById(R.id.recyclerViewAudio);
+        recyclerViewVideo=(RecyclerView)findViewById(R.id.recyclerViewVideo);
     }
 
     public void changeAppBarLayoutHeight(int fractionOfHeightScreenSize){
