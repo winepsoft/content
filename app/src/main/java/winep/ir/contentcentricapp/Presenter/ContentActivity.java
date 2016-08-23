@@ -7,6 +7,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.ActionMode;
@@ -123,6 +124,16 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         mainContentText =(TextView)findViewById(R.id.mainContent);
         recyclerViewAudio=(RecyclerView)findViewById(R.id.recyclerViewAudio);
         recyclerViewVideo=(RecyclerView)findViewById(R.id.recyclerViewVideo);
+        setLayoutManagerToRecyclerView();
+    }
+
+    public void setLayoutManagerToRecyclerView(){
+        LinearLayoutManager audioLayoutManager;
+        audioLayoutManager = new LinearLayoutManager(StaticParameters.getInstance().ContentActivity);
+        recyclerViewAudio.setLayoutManager(audioLayoutManager);
+        LinearLayoutManager videoLayoutManager;
+        videoLayoutManager = new LinearLayoutManager(StaticParameters.getInstance().ContentActivity);
+        recyclerViewVideo.setLayoutManager(videoLayoutManager);
     }
 
     public void changeAppBarLayoutHeight(int fractionOfHeightScreenSize){
