@@ -166,7 +166,7 @@ public class AudioPlayerActivity extends AppCompatActivity {
     public void pause() {
         mp.pause();
         imgBtn.setTag("pause"); // next state should be 'pause'
-        imgBtn.setBackgroundResource(R.drawable.play_selector);
+        //imgBtn.setBackgroundResource(R.drawable.play_selector);
         // stop seekbar
         handler.removeCallbacks(runnable);
     }
@@ -174,7 +174,7 @@ public class AudioPlayerActivity extends AppCompatActivity {
     public void play() {
         mp.start();
         imgBtn.setTag("play"); // next state should be 'pause'
-        imgBtn.setBackgroundResource(R.drawable.pause_selector);
+        //imgBtn.setBackgroundResource(R.drawable.pause_selector);
         //start seekBar
         updateSeekbar();
     }

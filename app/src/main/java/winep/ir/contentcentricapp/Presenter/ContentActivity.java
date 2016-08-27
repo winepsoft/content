@@ -1,7 +1,10 @@
 package winep.ir.contentcentricapp.Presenter;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
@@ -18,7 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.MediaController;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -57,6 +63,15 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
     private BottomSheetBehavior mBottomSheetBehaviorAudio;
     private View bottomSheetVideoPlayer;
     private BottomSheetBehavior mBottomSheetBehaviorVideo;
+    private VideoView videoView;
+    private ImageButton imgBtn;
+    private TextView titleTextView;
+    private MediaPlayer mp;
+    private SeekBar seekbar;
+    private Handler handler;
+    private Runnable runnable;
+    private ImageView songImageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +142,7 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void changeAudioPlayerStatus() {
                 mBottomSheetBehaviorAudio.setState(BottomSheetBehavior.STATE_EXPANDED);
+                play();
             }
         });
 
@@ -134,8 +150,83 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void changeVideoPlayerStatus() {
                 mBottomSheetBehaviorVideo.setState(BottomSheetBehavior.STATE_EXPANDED);
+                playVideo();
             }
         });
+
+        mp = MediaPlayer.create(getBaseContext(),R.raw.music);
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                updateSeekbar();
+            }
+        };
+
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = (String) imgBtn.getTag();
+                if (s.equals("pause")) {
+                    play();
+                } else {
+                    pause();
+                }
+            }
+        });
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                long now = (long) ((float) seekbar.getProgress() / 100 * mp.getDuration());
+                mp.seekTo((int) now);
+                handler.postDelayed(runnable, 1000);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                handler.removeCallbacks(runnable);
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+
+            }
+        });
+
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pause();
+            }
+        });
+
+    }
+
+    public void updateSeekbar() {
+        //find current progress position of mediaPlayer
+        float progress = ((float) mp.getCurrentPosition() / mp.getDuration());
+        //set this progress to seekBar
+        seekbar.setProgress((int) (progress * 100));
+        //run handler again after 1 second
+        handler.postDelayed(runnable, 1000);
+    }
+
+    public void pause() {
+        mp.pause();
+        imgBtn.setTag("pause"); // next state should be 'pause'
+        //imgBtn.setBackgroundResource(R.drawable.play_selector);
+        // stop seekbar
+        handler.removeCallbacks(runnable);
+    }
+
+    public void play() {
+        mp.start();
+        imgBtn.setTag("play"); // next state should be 'pause'
+        //imgBtn.setBackgroundResource(R.drawable.pause_selector);
+        //start seekBar
+        updateSeekbar();
     }
 
     public void visibleCardViewAudioAndVideo(){
@@ -156,6 +247,22 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         bottomSheetVideoPlayer= findViewById( R.id.bottom_sheet_video_player);
         mBottomSheetBehaviorVideo = BottomSheetBehavior.from(bottomSheetVideoPlayer);
 
+        videoView=(VideoView)findViewById(R.id.videoView);
+
+        imgBtn = (ImageButton) findViewById(R.id.playBtn);
+        seekbar = (SeekBar) findViewById(R.id.seekBar);
+        songImageView = (ImageView) findViewById(R.id.songImage);
+        titleTextView = (TextView) findViewById(R.id.title);
+    }
+
+    public void playVideo(){
+        String uriPath="android.resource://"+getPackageName()+"/"+R.raw.video;
+        Uri uri=Uri.parse(uriPath);
+        videoView.setVideoURI(uri);
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
+        videoView.start();
 
     }
 
