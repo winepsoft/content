@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import winep.ir.contentcentricapp.DataModel.Video;
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverVideoPlayer;
 import winep.ir.contentcentricapp.R;
 
 /**
@@ -32,6 +33,12 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.txtVideoTitle.setText(videos.get(position).getVideoTitle());
+        holder.btnVideoPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ObserverVideoPlayer.setVideoPlayerStatus(true);
+            }
+        });
 
     }
 

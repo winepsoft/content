@@ -3,6 +3,7 @@ package winep.ir.contentcentricapp.Presenter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,6 +33,10 @@ import java.util.ArrayList;
 import winep.ir.contentcentricapp.DataModel.Audio;
 import winep.ir.contentcentricapp.DataModel.MainMenuItem;
 import winep.ir.contentcentricapp.DataModel.Video;
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverAudioPlayer;
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverAudioPlayerListener;
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverVideoPlayer;
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverVideoPlayerListener;
 import winep.ir.contentcentricapp.R;
 import winep.ir.contentcentricapp.Utility.ChangeThem;
 import winep.ir.contentcentricapp.Utility.StaticParameters;
@@ -48,6 +53,10 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
     private RecyclerView recyclerViewVideo;
     private ContentActivityRecyclerAudioAdapter audioAdapter;
     private ContentActivityRecyclerVideoAdapter videoAdapter;
+    private View bottomSheetAudioPlayer;
+    private BottomSheetBehavior mBottomSheetBehaviorAudio;
+    private View bottomSheetVideoPlayer;
+    private BottomSheetBehavior mBottomSheetBehaviorVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +121,21 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
 
             }
         });
+
+
+        ObserverAudioPlayer.ObserverChangeAudioPlayerStatus(new ObserverAudioPlayerListener() {
+            @Override
+            public void changeAudioPlayerStatus() {
+                mBottomSheetBehaviorAudio.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        ObserverVideoPlayer.ObserverChangeVideoPlayerStatus(new ObserverVideoPlayerListener() {
+            @Override
+            public void changeVideoPlayerStatus() {
+                mBottomSheetBehaviorVideo.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
     }
 
     public void visibleCardViewAudioAndVideo(){
@@ -125,6 +149,14 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         recyclerViewAudio=(RecyclerView)findViewById(R.id.recyclerViewAudio);
         recyclerViewVideo=(RecyclerView)findViewById(R.id.recyclerViewVideo);
         setLayoutManagerToRecyclerView();
+
+        bottomSheetAudioPlayer = findViewById( R.id.bottom_sheet_audio_player );
+        mBottomSheetBehaviorAudio= BottomSheetBehavior.from(bottomSheetAudioPlayer);
+
+        bottomSheetVideoPlayer= findViewById( R.id.bottom_sheet_video_player);
+        mBottomSheetBehaviorVideo = BottomSheetBehavior.from(bottomSheetVideoPlayer);
+
+
     }
 
     public void setLayoutManagerToRecyclerView(){

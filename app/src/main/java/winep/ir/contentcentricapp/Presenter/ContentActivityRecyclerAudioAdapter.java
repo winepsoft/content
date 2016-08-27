@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import winep.ir.contentcentricapp.DataModel.Audio;
+import winep.ir.contentcentricapp.Presenter.Observer.ObserverAudioPlayer;
 import winep.ir.contentcentricapp.R;
 
 /**
@@ -32,6 +33,12 @@ public class ContentActivityRecyclerAudioAdapter extends RecyclerView.Adapter<Co
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.txtAudioTitle.setText(audios.get(position).getAudioTitle());
+        holder.btnAudioPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ObserverAudioPlayer.setAudioPlayerStatuse(true);
+            }
+        });
     }
 
     @Override
