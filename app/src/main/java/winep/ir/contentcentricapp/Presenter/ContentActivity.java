@@ -340,6 +340,12 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
 
     }
 
+    @Override
+    public void onBackPressed() {
+        mp.stop();
+        finish();
+    }
+
     public void shareText(String shareText){
 
         Intent sendIntent = new Intent();
