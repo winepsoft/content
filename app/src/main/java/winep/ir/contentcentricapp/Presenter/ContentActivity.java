@@ -216,7 +216,7 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
     public void pause() {
         mp.pause();
         imgBtn.setTag("pause"); // next state should be 'pause'
-        //imgBtn.setBackgroundResource(R.drawable.play_selector);
+        imgBtn.setImageResource(R.mipmap.play);
         // stop seekbar
         handler.removeCallbacks(runnable);
     }
@@ -224,7 +224,7 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
     public void play() {
         mp.start();
         imgBtn.setTag("play"); // next state should be 'pause'
-        //imgBtn.setBackgroundResource(R.drawable.pause_selector);
+        imgBtn.setImageResource(R.mipmap.pause);
         //start seekBar
         updateSeekbar();
     }
