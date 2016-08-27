@@ -149,8 +149,9 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         ObserverVideoPlayer.ObserverChangeVideoPlayerStatus(new ObserverVideoPlayerListener() {
             @Override
             public void changeVideoPlayerStatus() {
-                mBottomSheetBehaviorVideo.setState(BottomSheetBehavior.STATE_EXPANDED);
-                playVideo();
+                /*mBottomSheetBehaviorVideo.setState(BottomSheetBehavior.STATE_EXPANDED);
+                playVideo();*/
+                openVideoPlayer();
             }
         });
 
