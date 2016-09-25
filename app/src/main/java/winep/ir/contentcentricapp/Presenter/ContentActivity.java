@@ -91,7 +91,7 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         audioAdapter=new ContentActivityRecyclerAudioAdapter(createAudioList());
         recyclerViewAudio.setAdapter(audioAdapter);
 
-        videoAdapter=new ContentActivityRecyclerVideoAdapter(createVideoList());
+        videoAdapter=new ContentActivityRecyclerVideoAdapter(StaticParameters.getInstance().ContentActivity,createVideoList());
         recyclerViewVideo.setAdapter(videoAdapter);
 
 
