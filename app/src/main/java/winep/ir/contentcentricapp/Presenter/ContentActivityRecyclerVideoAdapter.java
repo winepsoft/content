@@ -82,6 +82,9 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
             @Override
             public void onClick(View view) {
                 //TODO Open Video Player Activity
+                Intent intent=new Intent(context,VideoPlayerActivity.class);
+                intent.putExtra("videoName",videos.get(position).getVideoTitle());
+                context.startActivity(intent);
             }
         });
 

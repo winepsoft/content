@@ -13,7 +13,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/image"/>
+            android:id="@+id/image"
+            android:src="@drawable/movie" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -21,14 +22,16 @@
             android:id="@+id/btnDownload"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/download_bold" />
+            android:src="@mipmap/download_bold"
+            android:background="@null"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnPlay"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/play" />
+            android:src="@mipmap/play"
+            android:background="@null"/>
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="match_parent"
@@ -44,6 +47,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/videoInformation"
-            android:layout_below="@+id/image" />
+            android:layout_below="@+id/image"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
+            android:text="video" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

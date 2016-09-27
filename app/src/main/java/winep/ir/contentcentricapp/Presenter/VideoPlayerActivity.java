@@ -13,6 +13,7 @@ import android.widget.VideoView;
 
 import winep.ir.contentcentricapp.R;
 import winep.ir.contentcentricapp.Utility.ChangeThem;
+import winep.ir.contentcentricapp.Utility.Utility;
 
 /**
  * Created by ShaisteS on 8/15/2016.
@@ -20,6 +21,7 @@ import winep.ir.contentcentricapp.Utility.ChangeThem;
 public class VideoPlayerActivity extends AppCompatActivity {
 
     private VideoView videoView;
+    private String videoName;
 
 
     @Override
@@ -30,7 +32,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeItemsInView();
-        playVideo();
+        videoName=getIntent().getStringExtra("videoName");
+        String videoPath=Utility.getInstance().getAdreessSaveFile()+videoName+".mp4";
+        playVideo(videoPath);
 
     }
 
@@ -38,9 +42,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
         videoView=(VideoView)findViewById(R.id.videoView);
     }
 
-    public void playVideo(){
-        String uriPath="android.resource://"+getPackageName()+"/"+R.raw.video;
-        Uri uri=Uri.parse(uriPath);
+    public void playVideo(String videoPath){
+        Uri uri=Uri.parse(videoPath);
         videoView.setVideoURI(uri);
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
