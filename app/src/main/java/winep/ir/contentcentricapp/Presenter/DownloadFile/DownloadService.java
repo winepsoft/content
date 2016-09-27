@@ -23,15 +23,18 @@ import retrofit2.Retrofit;
 /**
  * Created by ShaisteS on 9/27/2016.
  */
-public class DownloadService extends IntentService {
+public class DownloadService  extends IntentService {
 
     public DownloadService() {
         super("Download Service");
     }
 
+    public static final String API_BASE_URL = "http://your.api-base.url";
     private NotificationCompat.Builder notificationBuilder;
     private NotificationManager notificationManager;
     private int totalFileSize;
+    private String downloadFileURL;
+    private String getDownloadFileName;
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -43,23 +46,24 @@ public class DownloadService extends IntentService {
                 .setContentText("Downloading File")
                 .setAutoCancel(true);
         notificationManager.notify(0, notificationBuilder.build());
-
-        initDownload();
+        downloadFileURL=intent.getExtras().getString("url");
+        getDownloadFileName=intent.getExtras().getString("name");
+        initDownload(downloadFileURL);
 
     }
 
-    private void initDownload(){
+    private void initDownload(String url){
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://www.learn2crack.com/")
+                .baseUrl(API_BASE_URL)
                 .build();
 
         RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
 
-        Call<ResponseBody> request = retrofitInterface.downloadFile();
+        Call<ResponseBody> request = retrofitInterface.downloadFile(url);
         try {
 
-            downloadFile(request.execute().body());
+            downloadFile(request.execute().body(),getDownloadFileName);
 
         } catch (IOException e) {
 
@@ -69,13 +73,13 @@ public class DownloadService extends IntentService {
         }
     }
 
-    private void downloadFile(ResponseBody body) throws IOException {
+    private void downloadFile(ResponseBody body,String fileName) throws IOException {
 
         int count;
         byte data[] = new byte[1024 * 4];
         long fileSize = body.contentLength();
         InputStream bis = new BufferedInputStream(body.byteStream(), 1024 * 8);
-        File outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "file.zip");
+        File outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),fileName);
         OutputStream output = new FileOutputStream(outputFile);
         long total = 0;
         long startTime = System.currentTimeMillis();

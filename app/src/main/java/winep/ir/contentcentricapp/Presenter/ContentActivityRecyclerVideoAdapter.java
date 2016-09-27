@@ -1,6 +1,10 @@
 package winep.ir.contentcentricapp.Presenter;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import winep.ir.contentcentricapp.DataModel.Video;
+import winep.ir.contentcentricapp.Presenter.DownloadFile.Download;
+import winep.ir.contentcentricapp.Presenter.DownloadFile.DownloadService;
 import winep.ir.contentcentricapp.R;
 import winep.ir.contentcentricapp.Utility.Utility;
 
@@ -23,6 +30,8 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
 
     private ArrayList<Video> videos;
     private Context context;
+    public static final String MESSAGE_PROGRESS = "message_progress";
+
 
     ContentActivityRecyclerVideoAdapter(Context context, ArrayList<Video> videos){
         this.videos=videos;
@@ -36,7 +45,7 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         String filePath=Utility.getInstance().getAdreessSaveFile()+videos.get(position).getVideoTitle()+".mp4";
 
@@ -45,6 +54,7 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
             holder.progressBar.setVisibility(View.GONE);
             holder.btnDownload.setVisibility(View.GONE);
             holder.btnPlay.setVisibility(View.VISIBLE);
+            holder.videoInfoText.setText(videos.get(position).getVideoTitle());
 
         }
         else{
@@ -60,6 +70,9 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
                 holder.btnDownload.setVisibility(View.GONE);
                 holder.progressBar.setVisibility(View.VISIBLE);
                 //TODO Download Process
+                String url="http://winep.ir/media/video1.mov";
+                String videoName=videos.get(position).getVideoTitle()+".mp4";
+                startDownload(url,videoName,holder.progressBar,holder.videoInfoText);
 
             }
         });
@@ -83,13 +96,56 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
         public ImageButton btnPlay;
         public ImageButton btnDownload;
         public ProgressBar progressBar;
+        public TextView videoInfoText;
         public MyViewHolder(View itemView) {
             super(itemView);
             imageOfVideo=(ImageView)itemView.findViewById(R.id.image);
             btnPlay=(ImageButton)itemView.findViewById(R.id.btnPlay);
             btnDownload=(ImageButton)itemView.findViewById(R.id.btnDownload);
             progressBar=(ProgressBar)itemView.findViewById(R.id.progress);
+            videoInfoText=(TextView)itemView.findViewById(R.id.videoInformation);
         }
+    }
+
+    private void startDownload(String url,String videoName,ProgressBar progressBar,TextView textView){
+        registerReceiver(progressBar,textView);
+        Intent intent = new Intent(context,DownloadService.class);
+        intent.putExtra("url",url);
+        intent.putExtra("name",videoName);
+        context.startService(intent);
+
+    }
+
+
+    private void registerReceiver(final ProgressBar mProgressBar, final TextView mProgressText){
+
+        LocalBroadcastManager bManager = LocalBroadcastManager.getInstance(context);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(MESSAGE_PROGRESS);
+
+
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                if(intent.getAction().equals(MESSAGE_PROGRESS)){
+
+                    Download download = intent.getParcelableExtra("download");
+                    mProgressBar.setProgress(download.getProgress());
+                    if(download.getProgress() == 100){
+
+                        mProgressText.setText("File Download Complete");
+
+                    } else {
+
+                        mProgressText.setText(String.format("Downloaded (%d/%d) MB",download.getCurrentFileSize(),download.getTotalFileSize()));
+
+                    }
+                }
+            }
+        };
+        bManager.registerReceiver(broadcastReceiver, intentFilter);
+
     }
 
 }
