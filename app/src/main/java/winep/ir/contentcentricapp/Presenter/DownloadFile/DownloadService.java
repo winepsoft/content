@@ -116,16 +116,15 @@ public class DownloadService  extends IntentService {
 
     private void sendNotification(Download download){
 
-        sendIntent(download);
+        sendIntent("message_progress",download);
         notificationBuilder.setProgress(100,download.getProgress(),false);
         notificationBuilder.setContentText("Downloading file "+ download.getCurrentFileSize() +"/"+totalFileSize +" MB");
         notificationManager.notify(0, notificationBuilder.build());
     }
 
-    private void sendIntent(Download download){
+    private void sendIntent(String message,Download download){
 
-        //Intent intent = new Intent(MainActivity.MESSAGE_PROGRESS);
-        Intent intent=new Intent();
+        Intent intent = new Intent(message);
         intent.putExtra("download",download);
         LocalBroadcastManager.getInstance(DownloadService.this).sendBroadcast(intent);
     }
@@ -134,7 +133,7 @@ public class DownloadService  extends IntentService {
 
         Download download = new Download();
         download.setProgress(100);
-        sendIntent(download);
+        sendIntent("message_progress",download);
 
         notificationManager.cancel(0);
         notificationBuilder.setProgress(0,0,false);

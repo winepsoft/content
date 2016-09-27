@@ -61,6 +61,7 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
             holder.progressBar.setVisibility(View.GONE);
             holder.btnDownload.setVisibility(View.VISIBLE);
             holder.btnPlay.setVisibility(View.GONE);
+            holder.videoInfoText.setText(videos.get(position).getVideoTitle());
 
         }
 
@@ -72,7 +73,7 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
                 //TODO Download Process
                 String url="http://winep.ir/media/video1.mov";
                 String videoName=videos.get(position).getVideoTitle()+".mp4";
-                startDownload(url,videoName,holder.progressBar,holder.videoInfoText);
+                startDownload(url,videoName,holder.item);
 
             }
         });
@@ -97,6 +98,7 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
         public ImageButton btnDownload;
         public ProgressBar progressBar;
         public TextView videoInfoText;
+        public View item;
         public MyViewHolder(View itemView) {
             super(itemView);
             imageOfVideo=(ImageView)itemView.findViewById(R.id.image);
@@ -104,11 +106,12 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
             btnDownload=(ImageButton)itemView.findViewById(R.id.btnDownload);
             progressBar=(ProgressBar)itemView.findViewById(R.id.progress);
             videoInfoText=(TextView)itemView.findViewById(R.id.videoInformation);
+            this.item=itemView;
         }
     }
 
-    private void startDownload(String url,String videoName,ProgressBar progressBar,TextView textView){
-        registerReceiver(progressBar,textView);
+    private void startDownload(String url,String videoName,View itemView){
+        registerReceiver(itemView);
         Intent intent = new Intent(context,DownloadService.class);
         intent.putExtra("url",url);
         intent.putExtra("name",videoName);
@@ -117,11 +120,13 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
     }
 
 
-    private void registerReceiver(final ProgressBar mProgressBar, final TextView mProgressText){
+    private void registerReceiver(View itemView){
 
         LocalBroadcastManager bManager = LocalBroadcastManager.getInstance(context);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(MESSAGE_PROGRESS);
+        final ProgressBar mProgressBar=(ProgressBar)itemView.findViewById(R.id.progress);
+        final ImageButton mPlayButton=(ImageButton)itemView.findViewById(R.id.btnPlay);
 
 
         BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -133,19 +138,14 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
                     Download download = intent.getParcelableExtra("download");
                     mProgressBar.setProgress(download.getProgress());
                     if(download.getProgress() == 100){
-
-                        mProgressText.setText("File Download Complete");
-
-                    } else {
-
-                        mProgressText.setText(String.format("Downloaded (%d/%d) MB",download.getCurrentFileSize(),download.getTotalFileSize()));
+                        mProgressBar.setVisibility(View.GONE);
+                        mPlayButton.setVisibility(View.VISIBLE);
 
                     }
                 }
             }
         };
         bManager.registerReceiver(broadcastReceiver, intentFilter);
-
     }
 
 }
