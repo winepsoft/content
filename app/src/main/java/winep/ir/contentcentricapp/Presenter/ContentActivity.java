@@ -88,7 +88,7 @@ public class ContentActivity extends AppCompatActivity implements OnMapReadyCall
         Boolean imageStatus=getIntent().getExtras().getBoolean("imageStatus");
         setImageForBackgroundAppBarLayout(imageStatus);
 
-        audioAdapter=new ContentActivityRecyclerAudioAdapter(createAudioList());
+        audioAdapter=new ContentActivityRecyclerAudioAdapter(this,createAudioList());
         recyclerViewAudio.setAdapter(audioAdapter);
 
         videoAdapter=new ContentActivityRecyclerVideoAdapter(StaticParameters.getInstance().ContentActivity,createVideoList());
