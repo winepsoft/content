@@ -5,7 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,7 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemview= LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.card_view_list_video_list,parent,false);
+                inflate(R.layout.card_view_list_video_item,parent,false);
         return new MyViewHolder(itemview);
     }
 
@@ -55,9 +57,15 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageOfVideo;
+        public ImageButton btnPlay;
+        public ImageButton btnDownload;
+        public ProgressBar progressBar;
         public MyViewHolder(View itemView) {
             super(itemView);
             imageOfVideo=(ImageView)itemView.findViewById(R.id.image);
+            btnPlay=(ImageButton)itemView.findViewById(R.id.btnPlay);
+            btnDownload=(ImageButton)itemView.findViewById(R.id.btnDownload);
+            progressBar=(ProgressBar)itemView.findViewById(R.id.progress);
         }
     }
 }
