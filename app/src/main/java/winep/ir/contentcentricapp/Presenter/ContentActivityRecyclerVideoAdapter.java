@@ -9,10 +9,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import winep.ir.contentcentricapp.DataModel.Video;
 import winep.ir.contentcentricapp.R;
+import winep.ir.contentcentricapp.Utility.Utility;
 
 /**
  * Created by ShaisteS on 8/23/2016.
@@ -28,25 +30,46 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemview= LayoutInflater.from(parent.getContext()).
+        View itemView= LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.card_view_list_video_item,parent,false);
-        return new MyViewHolder(itemview);
+        return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-/*      holder.txtVideoTitle.setText(videos.get(position).getVideoTitle());
-        holder.btnVideoPlay.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
+
+        String filePath=Utility.getInstance().getAdreessSaveFile()+videos.get(position).getVideoTitle()+".mp4";
+
+        File file = new File(filePath);
+        if(file.exists()){
+            holder.progressBar.setVisibility(View.GONE);
+            holder.btnDownload.setVisibility(View.GONE);
+            holder.btnPlay.setVisibility(View.VISIBLE);
+
+        }
+        else{
+            holder.progressBar.setVisibility(View.GONE);
+            holder.btnDownload.setVisibility(View.VISIBLE);
+            holder.btnPlay.setVisibility(View.GONE);
+
+        }
+
+        holder.btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ObserverVideoPlayer.setVideoPlayerStatus(true);
-            }
-        });*/
+                holder.btnDownload.setVisibility(View.GONE);
+                holder.progressBar.setVisibility(View.VISIBLE);
+                //TODO Download Process
 
-        /*String vidAddress = "http://winep.ir/media/video1.mov";
-        Uri videoUrl = Uri.parse(vidAddress);
-        holder.video.setVideoURI(videoUrl);
-        holder.video.seekTo(2000);*/
+            }
+        });
+
+        holder.btnPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO Open Video Player Activity
+            }
+        });
 
     }
 
@@ -68,4 +91,5 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
             progressBar=(ProgressBar)itemView.findViewById(R.id.progress);
         }
     }
+
 }
