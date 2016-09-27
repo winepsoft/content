@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cardViewAudio"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardViewVideo"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -11,5 +10,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/recyclerViewAudio">
     </android.support.v7.widget.RecyclerView>
+</LinearLayout>
 
-</android.support.v7.widget.CardView>
+    <!--<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cardViewAudio"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerViewAudio">
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v7.widget.CardView>-->
