@@ -1,12 +1,11 @@
 package winep.ir.contentcentricapp.Presenter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.VideoView;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -42,10 +41,10 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
             }
         });*/
 
-        String vidAddress = "http://winep.ir/media/video1.mov";
+        /*String vidAddress = "http://winep.ir/media/video1.mov";
         Uri videoUrl = Uri.parse(vidAddress);
         holder.video.setVideoURI(videoUrl);
-        holder.video.seekTo(2000);
+        holder.video.seekTo(2000);*/
 
     }
 
@@ -55,16 +54,10 @@ public class ContentActivityRecyclerVideoAdapter extends RecyclerView.Adapter<Co
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        /*public TextView txtVideoTitle;
-        public ImageButton btnVideoDownload;
-        public ImageButton btnVideoPlay;*/
-        public VideoView video;
+        public ImageView imageOfVideo;
         public MyViewHolder(View itemView) {
             super(itemView);
-            video=(VideoView)itemView.findViewById(R.id.video);
-            /*txtVideoTitle=(TextView)itemView.findViewById(R.id.videoTitle);
-            btnVideoDownload=(ImageButton)itemView.findViewById(R.id.videoDownload);
-            btnVideoPlay=(ImageButton)itemView.findViewById(R.id.videoPlay);*/
+            imageOfVideo=(ImageView)itemView.findViewById(R.id.image);
         }
     }
 }

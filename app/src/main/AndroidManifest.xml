@@ -42,6 +42,8 @@
         <activity android:name=".Presenter.VideoPlayerActivity" />
         <activity android:name=".Presenter.SettingsActivity"/>
 
+        <service android:name=".Presenter.DownloadFile.DownloadService"/>
+
         <!-- Google Map API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

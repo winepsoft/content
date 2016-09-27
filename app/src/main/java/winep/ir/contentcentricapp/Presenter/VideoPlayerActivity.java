@@ -46,7 +46,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
         mediaController.setAnchorView(videoView);
         videoView.setMediaController(mediaController);
         videoView.start();
-
     }
 
     @Override
